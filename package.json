@@ -1,0 +1,27 @@
+{
+  "name": "hls-safe-encoder",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.internal.hls-safe-encoder",
+    "productName": "HLS Safe Encoder",
+    "mac": {
+      "target": "dir",
+      "category": "public.app-category.video"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "renderer.js"
+    ]
+  }
+}
