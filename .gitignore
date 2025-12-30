@@ -16,3 +16,7 @@ npm-debug.log*
 .vscode/
 *.swp
 *.swo
+
+# MISC
+# scripts/
+notes.md

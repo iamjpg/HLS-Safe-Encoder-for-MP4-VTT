@@ -1,21 +1,29 @@
 {
   "name": "hls-safe-encoder",
-  "version": "0.2.0",
+  "version": "0.1.0",
+  "description": "A macOS app for safely re-encoding HLS MP4/VTT assets and repairing keyframe alignment issues.",
+  "author": "John Given <jgiven@gmail.com>",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --mac"
+    "build": "electron-builder --mac",
+    "build:mac": "npm run build && npm run notarize:mac",
+    "notarize:mac": "node ./scripts/notarize-mac.js"
   },
   "devDependencies": {
     "electron": "^33.0.0",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^26.0.12"
   },
   "build": {
     "appId": "com.internal.hls-safe-encoder",
     "productName": "HLS Safe Encoder",
     "mac": {
-      "target": "dir",
-      "category": "public.app-category.video"
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.video",
+      "hardenedRuntime": true
     },
     "files": [
       "main.js",
