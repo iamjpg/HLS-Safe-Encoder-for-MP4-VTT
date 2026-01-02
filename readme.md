@@ -42,11 +42,19 @@ This tool avoids those issues by:
 brew install ffmpeg
 ```
 
+##### Homebrew installation instructions (if not already installed)
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+[https://brew.sh/](https://brew.sh/)
+
 ---
 
 ## Installation
 
-1. Go to the **Releases** section on GitHub
+1. Go to the **Releases** section on this GitHub page
 2. Download the latest `.dmg`
 3. Open the DMG and drag **HLS Safe Encoder** to your Applications folder
 4. Launch the app
