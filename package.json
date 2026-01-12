@@ -1,6 +1,6 @@
 {
   "name": "hls-safe-encoder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A macOS app for safely re-encoding HLS MP4/VTT assets and repairing keyframe alignment issues.",
   "author": "John Given <jgiven@gmail.com>",
   "main": "main.js",

@@ -104,15 +104,20 @@ ipcMain.handle('encode', async (event, mp4Path, vttPath, outputDir) => {
     const inputBasename = path.basename(mp4Path, path.extname(mp4Path));
     const outputPath = path.join(outputDir, `${inputBasename}_hls_safe.mp4`);
 
-    // Escape VTT path for subtitles filter syntax
-    const escapedVttPath = escapeFilterPath(vttPath);
-
-    // ffmpeg command with burned-in subtitles via -vf subtitles filter
-    // No subtitle track muxing - captions rendered directly onto video frames
+    // Build ffmpeg args - conditionally include subtitles filter if VTT provided
     const args = [
       '-y',
-      '-i', mp4Path,
-      '-vf', `subtitles=${escapedVttPath}`,
+      '-i', mp4Path
+    ];
+
+    // Add subtitles filter only if VTT path is provided
+    if (vttPath) {
+      const escapedVttPath = escapeFilterPath(vttPath);
+      args.push('-vf', `subtitles=${escapedVttPath}`);
+    }
+
+    // HLS-safe encoding settings
+    args.push(
       '-map', '0:v:0',
       '-map', '0:a?',
       '-c:v', 'libx264',
@@ -131,7 +136,7 @@ ipcMain.handle('encode', async (event, mp4Path, vttPath, outputDir) => {
       '-b:a', '128k',
       '-movflags', '+faststart',
       outputPath
-    ];
+    );
 
     // Spawn ffmpeg - uses system-installed ffmpeg
     ffmpegProcess = spawn(ffmpegPath, args);

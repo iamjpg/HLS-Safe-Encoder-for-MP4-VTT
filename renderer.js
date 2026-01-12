@@ -13,10 +13,32 @@ const outputEl = document.getElementById('output');
 const statusEl = document.getElementById('status');
 const encodeBtn = document.getElementById('encode');
 
-// Enable encode button only when all inputs are selected
+// Enable encode button when MP4 and output directory are selected (VTT is optional)
 function updateEncodeButton() {
-  encodeBtn.disabled = !(mp4Path && vttPath && outputDir);
+  encodeBtn.disabled = !(mp4Path && outputDir);
 }
+
+// Clear file/directory selection handlers
+document.getElementById('clearMp4').addEventListener('click', () => {
+  mp4Path = null;
+  mp4PathEl.textContent = 'No file selected';
+  mp4PathEl.classList.remove('has-file');
+  updateEncodeButton();
+});
+
+document.getElementById('clearVtt').addEventListener('click', () => {
+  vttPath = null;
+  vttPathEl.textContent = 'No file selected';
+  vttPathEl.classList.remove('has-file');
+  updateEncodeButton();
+});
+
+document.getElementById('clearOutputDir').addEventListener('click', () => {
+  outputDir = null;
+  outputDirPathEl.textContent = 'No directory selected';
+  outputDirPathEl.classList.remove('has-file');
+  updateEncodeButton();
+});
 
 // File selection handlers - call main process via IPC
 document.getElementById('selectMp4').addEventListener('click', async () => {
@@ -24,6 +46,7 @@ document.getElementById('selectMp4').addEventListener('click', async () => {
   if (path) {
     mp4Path = path;
     mp4PathEl.textContent = path;
+    mp4PathEl.classList.add('has-file');
     updateEncodeButton();
   }
 });
@@ -33,6 +56,7 @@ document.getElementById('selectVtt').addEventListener('click', async () => {
   if (path) {
     vttPath = path;
     vttPathEl.textContent = path;
+    vttPathEl.classList.add('has-file');
     updateEncodeButton();
   }
 });
@@ -42,6 +66,7 @@ document.getElementById('selectOutputDir').addEventListener('click', async () =>
   if (path) {
     outputDir = path;
     outputDirPathEl.textContent = path;
+    outputDirPathEl.classList.add('has-file');
     updateEncodeButton();
   }
 });
