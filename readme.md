@@ -1,5 +1,7 @@
 # HLS Safe Encoder
 
+<img width="761" height="739" alt="Screenshot 2026-01-12 at 10 57 34 AM" src="https://github.com/user-attachments/assets/30b94246-41fa-4ab8-ac41-a0d66d502549" />
+
 **HLS Safe Encoder** is a macOS desktop app for re-encoding MP4 files with burned-in WebVTT subtitles and HLS-friendly keyframe alignment.
 
 It’s designed for situations where subtitle timing, keyframe placement, or encoding parameters cause playback issues in HLS pipelines—especially when captions must be rendered directly into the video.
